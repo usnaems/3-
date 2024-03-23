@@ -8,6 +8,11 @@ B,C,D,E заполняется случайным образом целыми ч
  (К*A)*А– (K * AT). Выводятся по мере формирования А, F и все матричные операции последовательно.
 '''
 
+
+
+
+
+
 import random
 from math import ceil
 k=int(input('Введите число K '))
@@ -64,7 +69,7 @@ for row in B:
 
 F = C.copy()
 
-def swapzones(matrix):
+def swapzones1(matrix):
 
     F = len(matrix)  # Assuming a square matrix
 
@@ -96,6 +101,38 @@ def swapzones(matrix):
     #return zone2, zone3
     return matrix
 
+def swapzones2(matrix):
+
+    F = len(matrix)  # Assuming a square matrix
+
+    # Initialize zones as empty lists
+    zone1, zone2, zone3, zone4 = [], [], [], []
+
+    for i in range(F):
+        for j in range(F - 1, -1, -1):
+            if i > j and i + j > F - 1:
+                zone2.append(matrix[i][j])
+
+    for j in range(F - 1, -1, -1):
+        for i in range(F - 1, -1, -1):
+            if i > j and i + j < F - 1:  # Upper left zone
+                zone3.append(matrix[i][j])
+
+    c1,c2 = 0,0
+    for i in range(F):
+        for j in range(F):
+            if i > j and i + j > F - 1:
+                matrix[i][j] = zone3[c1]
+                c1 += 1
+
+    for j in range(F - 1, -1, -1):
+            for i in range(F):
+                if i > j and i + j < F - 1:  # Upper left zone
+                    matrix[i][j] = zone2[c2]
+                    c2 += 1
+    #return zone2, zone3
+    return matrix
+
 summ = 0
 for i in range(len(F)):
     for j in range(len(F)):
@@ -109,9 +146,9 @@ for i in range(len(F)):
             mult*=F[i][j]
 
 if summ > mult:
-    swapzones(F)
+    swapzones1(F)
 else:
-    swapzones(F)
+    swapzones2(F)
 
 print('Матрица F')
 for i in F:
@@ -161,3 +198,4 @@ print('выражение: (К*A)*А – (K * AT)')
 expression = subtract_matrices(multiply_matrices(multiply_matrix(A,k),A),multiply_matrix(transpose_matrix(A),k))
 for i in expression:
     print(i)
+
