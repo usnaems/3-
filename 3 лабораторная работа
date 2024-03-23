@@ -71,31 +71,31 @@ F = C.copy()
 
 def swapzones1(matrix):
 
-    F = len(matrix)  # Assuming a square matrix
+    f = len(matrix)  # Assuming a square matrix
 
     # Initialize zones as empty lists
     zone1, zone2, zone3, zone4 = [], [], [], []
 
-    for i in range(F):
-        for j in range(F):
-            if i > j and i + j > F - 1:
+    for i in range(f):
+        for j in range(f):
+            if i > j and i + j > f - 1:
                 zone2.append(matrix[i][j])
 
-    for j in range(F - 1, -1, -1):
-        for i in range(F):
-            if  i > j and i + j < F - 1:  # Upper left zone
+    for j in range(f - 1, -1, -1):
+        for i in range(f):
+            if  i > j and i + j < f - 1:  # Upper left zone
                 zone3.append(matrix[i][j])
 
     c1,c2 = 0,0
-    for i in range(F):
-        for j in range(F):
-            if i > j and i + j > F - 1:
+    for i in range(f):
+        for j in range(f):
+            if i > j and i + j > f - 1:
                 matrix[i][j] = zone3[c1]
                 c1 += 1
 
-    for j in range(F - 1, -1, -1):
-            for i in range(F):
-                if i > j and i + j < F - 1:  # Upper left zone
+    for j in range(f - 1, -1, -1):
+            for i in range(f):
+                if i > j and i + j < f - 1:  # Upper left zone
                     matrix[i][j] = zone2[c2]
                     c2 += 1
     #return zone2, zone3
@@ -103,31 +103,31 @@ def swapzones1(matrix):
 
 def swapzones2(matrix):
 
-    F = len(matrix)  # Assuming a square matrix
+    f = len(matrix)  # Assuming a square matrix
 
     # Initialize zones as empty lists
     zone1, zone2, zone3, zone4 = [], [], [], []
 
-    for i in range(F):
-        for j in range(F - 1, -1, -1):
-            if i > j and i + j > F - 1:
+    for i in range(f):
+        for j in range(f - 1, -1, -1):
+            if i > j and i + j > f - 1:
                 zone2.append(matrix[i][j])
 
-    for j in range(F - 1, -1, -1):
-        for i in range(F - 1, -1, -1):
-            if i > j and i + j < F - 1:  # Upper left zone
+    for j in range(f - 1, -1, -1):
+        for i in range(f - 1, -1, -1):
+            if i > j and i + j < f - 1:  # Upper left zone
                 zone3.append(matrix[i][j])
 
     c1,c2 = 0,0
-    for i in range(F):
-        for j in range(F):
-            if i > j and i + j > F - 1:
+    for i in range(f):
+        for j in range(f):
+            if i > j and i + j > f - 1:
                 matrix[i][j] = zone3[c1]
                 c1 += 1
 
-    for j in range(F - 1, -1, -1):
-            for i in range(F):
-                if i > j and i + j < F - 1:  # Upper left zone
+    for j in range(f - 1, -1, -1):
+            for i in range(f):
+                if i > j and i + j < f - 1:  # Upper left zone
                     matrix[i][j] = zone2[c2]
                     c2 += 1
     #return zone2, zone3
@@ -198,4 +198,12 @@ print('выражение: (К*A)*А – (K * AT)')
 expression = subtract_matrices(multiply_matrices(multiply_matrix(A,k),A),multiply_matrix(transpose_matrix(A),k))
 for i in expression:
     print(i)
+
+
+
+
+
+
+
+
 
